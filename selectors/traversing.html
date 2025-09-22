@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Traversal Playground</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.4 }
+    .wrap { display: grid; gap: 1rem; grid-template-columns: 1fr }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem }
+    button { padding: .4rem .7rem; border: 1px solid #ccc; border-radius: .5rem; cursor: pointer }
+    .stage { padding: 1rem; border: 1px solid #ddd; border-radius: .75rem }
+    .panel { padding: .75rem; border: 1px dashed #bbb; border-radius: .5rem }
+    .card { padding: .5rem; border: 1px solid #bbb; border-radius: .5rem; margin-top: .5rem }
+    /* highlights */
+    .hit   { outline: 2px solid #5a9; background: #e7fff4 }
+    .muted { background: #f6f7fb }
+    .range { outline: 2px dashed #f39; background: #fff0f6 }
+    .trace { box-shadow: 0 0 0 2px #ffd65a inset }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>jQuery Traversal Playground</h1>
+
+    <div class="btns">
+      <button id="reset">Reset</button>
+      <button id="parent">parent()</button>
+      <button id="parentsUntil">parentsUntil(.panel)</button>
+      <button id="children">children('li')</button>
+      <button id="find">find('span')</button>
+      <button id="siblings">siblings()</button>
+      <button id="next">next()</button>
+      <button id="nextAll">nextAll()</button>
+      <button id="nextUntil">nextUntil(':contains(\"Durian\")')</button>
+      <button id="prev">prev()</button>
+      <button id="prevAll">prevAll()</button>
+      <button id="prevUntil">prevUntil(':contains(\"Banana\")')</button>
+    </div>
+
+    <div class="stage panel">
+      <h2>Fruit</h2>
+      <ul id="fruit">
+        <li id="apple">Apple <span>(red)</span></li>
+        <li>Banana</li>
+        <li>Cherry <span>(stone fruit)</span></li>
+        <li>Durian</li>
+        <li>Elderberry</li>
+      </ul>
+
+      <div class="card">
+        <p id="msg">Message <em>(click buttons to traverse from me)</em></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function clear() {
+      $(".hit,.muted,.range,.trace").removeClass("hit muted range trace");
+    }
+
+    $("#reset").on("click", clear);
+
+    // 1) parent(): one level up from #msg (the .card)
+    $("#parent").on("click", function () {
+      clear();
+      $("#msg").parent().addClass("hit");
+    });
+
+    // 2) parentsUntil(): climb until .panel (exclude .panel)
+    $("#parentsUntil").on("click", function () {
+      clear();
+      $("#msg").parentsUntil(".panel").addClass("trace");
+    });
+
+    // 3) children(): only direct li of #fruit
+    $("#children").on("click", function () {
+      clear();
+      $("#fruit").children("li").addClass("hit");
+    });
+
+    // 4) find(): any-depth descendants (spans inside lis)
+    $("#find").on("click", function () {
+      clear();
+      $("#fruit").find("span").addClass("hit");
+    });
+
+    // 5) siblings(): other lis next to #apple
+    $("#siblings").on("click", function () {
+      clear();
+      $("#apple").siblings().addClass("muted");
+    });
+
+    // 6) next(): immediate next after #apple (Banana)
+    $("#next").on("click", function () {
+      clear();
+      $("#apple").next().addClass("hit");
+    });
+
+    // 7) nextAll(): all following siblings after #apple
+    $("#nextAll").on("click", function () {
+      clear();
+      $("#apple").nextAll().addClass("muted");
+    });
+
+    // 8) nextUntil(): from #apple up to Durian (exclusive)
+    $("#nextUntil").on("click", function () {
+      clear();
+      $("#apple").nextUntil(":contains('Durian')").addClass("range");
+    });
+
+    // 9) prev(): previous sibling from Durian (Cherry)
+    $("#prev").on("click", function () {
+      clear();
+      $("#fruit li:contains('Durian'):first").prev().addClass("hit");
+    });
+
+    // 10) prevAll(): all previous siblings from Durian
+    $("#prevAll").on("click", function () {
+      clear();
+      $("#fruit li:contains('Durian'):first").prevAll().addClass("muted");
+    });
+
+    // 11) prevUntil(): back from Durian until Banana (exclusive)
+    $("#prevUntil").on("click", function () {
+      clear();
+      $("#fruit li:contains('Durian'):first")
+        .prevUntil(":contains('Banana')").addClass("range");
+    });
+  </script>
+</body>
+</html>

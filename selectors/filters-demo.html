@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Demo</title>
+  <!-- jQuery from Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1 id="title">jQuery Filters: Quick Demo</h1>
+  <ul>
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Cherry</li>
+    <li>Durian</li>
+  </ul>
+  <label><input type="checkbox" checked> Remember me</label>
+  <label><input type="checkbox"> Subscribe</label>
+  <script>
+  $("li:odd").css("color", "purple");     // Banana, Durian
+  $("li:contains('Cherry')").css("font-weight", "bold");
+  $(":checked").parent().css("background", "yellow");
+  </script>
+</body>
+</html>
