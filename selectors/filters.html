@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Demo</title>
+  <!-- jQuery from Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1 id="title">jQuery Filters vs CSS Pseudo-classes</h1>
+  <ul>
+    <li>First in list</li>
+    <li>Second</li>
+    <li>Third</li>
+  </ul>
+
+  <ol>
+    <li>First in ordered list</li>
+    <li>Second</li>
+    <li>Third</li>
+  </ol>
+  <style>
+    /* Selects the first child of *every parent* */
+    li:first-child {
+      border: 1px solid red;
+    }
+  </style>
+  <script>
+  // Selects only the first <li> in the jQuery result set
+  $("li:first").css("color", "blue");
+  </script>
+</body>
+</html>
