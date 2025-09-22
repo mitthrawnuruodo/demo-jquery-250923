@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Demo</title>
+  <!-- jQuery from Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1 id="title">Hello World</h1>
+  <button id="btn">Click Me</button>
+
+  <script>
+    // jQuery code goes inside $(document).ready() to ensure DOM is loaded
+    $(document).ready(function() {
+      $("#btn").on("click", function() {
+        $("#title").text("Hello from jQuery!");
+      });
+    });
+  </script>
+</body>
+</html>
