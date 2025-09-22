@@ -1,1 +1,1 @@
-# demo-jquery-250923
+# Some basic jQuery examples
