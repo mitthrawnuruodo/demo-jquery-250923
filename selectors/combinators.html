@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Demo</title>
+  <!-- jQuery from Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1 id="title">CSS Combinators in jQuery</h1>
+  <ul id="outer">
+    <li>First</li>
+    <li>
+      Second
+      <ul id="inner">
+        <li>Nested A</li>
+        <li>Nested B</li>
+      </ul>
+    </li>
+    <li>Third</li>
+  </ul>
+
+  <h2>Subtitle</h2>
+  <p>First paragraph</p>
+  <p>Second paragraph</p>
+
+  <script>
+  // All li inside any ul (including nested)
+  $("ul li").css("color", "blue");
+
+  // Only direct li children of ul#outer (top-level items)
+  $("ul#outer > li").css("border", "1px solid red");
+
+  // First paragraph immediately after h2
+  $("h2 + p").css("font-weight", "bold");
+
+  // All paragraphs after h2
+  $("h2 ~ p").css("text-decoration", "underline");
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Demo</title>
+  <!-- jQuery from Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1 id="title">Example: selector + action</h1>
+  <button id="btn">Click Me</button>
+  <button id="resetBtn">Reset color</button>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque veritatis assumenda minus deleniti ad illo ducimus earum mollitia aspernatur iusto provident, asperiores necessitatibus esse blanditiis ut perspiciatis ipsam, quia voluptatum.</p>
+
+  <script>
+    $(document).ready(function() {
+      $("#btn").on("click", function() {
+          $("p").css("color", "green").fadeOut(1000).fadeIn(1000);
+      });
+      $("#resetBtn").on("click", function() {
+          $("p").css("color", "black");
+      });
+    });
+  </script>
+</body>
+</html>
