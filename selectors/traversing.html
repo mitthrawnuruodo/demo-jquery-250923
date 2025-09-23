@@ -88,7 +88,7 @@
     // 5) siblings(): other lis next to #apple
     $("#siblings").on("click", function () {
       clear();
-      $("#apple").siblings().addClass("muted");
+      $("#apple").siblings().addClass("hit");
     });
 
     // 6) next(): immediate next after #apple (Banana)
@@ -97,10 +97,16 @@
       $("#apple").next().addClass("hit");
     });
 
+    // Bonus: 
+    $("li").on("click", function () {
+      clear();
+      $(this).next().addClass("hit");
+    });
+
     // 7) nextAll(): all following siblings after #apple
     $("#nextAll").on("click", function () {
       clear();
-      $("#apple").nextAll().addClass("muted");
+      $("#apple").nextAll().addClass("hit");
     });
 
     // 8) nextUntil(): from #apple up to Durian (exclusive)
@@ -118,7 +124,7 @@
     // 10) prevAll(): all previous siblings from Durian
     $("#prevAll").on("click", function () {
       clear();
-      $("#fruit li:contains('Durian'):first").prevAll().addClass("muted");
+      $("#fruit li:contains('Durian'):first").prevAll().addClass("hit");
     });
 
     // 11) prevUntil(): back from Durian until Banana (exclusive)
