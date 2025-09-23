@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>jQuery Traversal Playground</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="../jquery-3.7.1.js"></script>
   <style>
-    body { font-family: system-ui, sans-serif; line-height: 1.4 }
+    body { font-family: system-ui, sans-serif; line-height: 1.2 }
     .wrap { display: grid; gap: 1rem; grid-template-columns: 1fr }
     .btns { display: flex; flex-wrap: wrap; gap: .5rem }
     button { padding: .4rem .7rem; border: 1px solid #ccc; border-radius: .5rem; cursor: pointer }
@@ -25,17 +25,17 @@
 
     <div class="btns">
       <button id="reset">Reset</button>
-      <button id="parent">parent()</button>
-      <button id="parentsUntil">parentsUntil(.panel)</button>
-      <button id="children">children('li')</button>
+      <button id="parent">parent() of #msg</button>
+      <button id="parentsUntil">parentsUntil(.wrap) of #msg</button>
+      <button id="children">children('li') of #fruit</button>
       <button id="find">find('span')</button>
-      <button id="siblings">siblings()</button>
-      <button id="next">next()</button>
-      <button id="nextAll">nextAll()</button>
-      <button id="nextUntil">nextUntil(':contains(\"Durian\")')</button>
-      <button id="prev">prev()</button>
-      <button id="prevAll">prevAll()</button>
-      <button id="prevUntil">prevUntil(':contains(\"Banana\")')</button>
+      <button id="siblings">siblings() of #apple</button>
+      <button id="next">next() after #apple</button>
+      <button id="nextAll">nextAll() after #apple</button>
+      <button id="nextUntil">nextUntil(':contains("Durian")') of #apple</button>
+      <button id="prev">prev() from Durian</button>
+      <button id="prevAll">prevAll()from Durian</button>
+      <button id="prevUntil">prevUntil(':contains("Banana")') from Durian</button>
     </div>
 
     <div class="stage panel">
@@ -49,7 +49,8 @@
       </ul>
 
       <div class="card">
-        <p id="msg">Message <em>(click buttons to traverse from me)</em></p>
+        <p id="msg">Message <em>(click parent() and parentsUntil() buttons to traverse from me)</em></p>
+        <p>Tip: Click list items to select next() element in Fruit list</p>
       </div>
     </div>
   </div>
@@ -70,8 +71,10 @@
     // 2) parentsUntil(): climb until .panel (exclude .panel)
     $("#parentsUntil").on("click", function () {
       clear();
-      $("#msg").parentsUntil(".panel").addClass("trace");
+      $("#msg").parentsUntil(".wrap").addClass("trace");
     });
+    // Tip: Change this parentsUntil(".wrap") to parentsUntil("body")
+    //      to include the .wrap element, too...
 
     // 3) children(): only direct li of #fruit
     $("#children").on("click", function () {
